@@ -52,6 +52,9 @@ private:
 public:
     DLL() : head(nullptr), last(nullptr), size(0) {}
 
+    /**
+     * @Time-Complexity O(1)
+    */
     Node* addFirst(int val)
     {
         Node* prevFirst = head;
@@ -71,6 +74,9 @@ public:
         return newNode;
     }
 
+    /*
+        @Time-Complexity: O(1)
+    */
     Node* addLast(int val)
     {
         Node* prevLast = last;
@@ -101,7 +107,7 @@ int main()
     dll.addFirst(1);
     dll.addFirst(2);
     dll.addLast(3);
-    
+
     Iterator it(dll.getHead());
 
     while (it.hasNext())
