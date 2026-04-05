@@ -106,7 +106,10 @@ private:
         return foundNode;
     }
 
-    Node* remove(int nodeId)
+    /**
+     * @Time-Complexity: O(n)
+     */
+    Node* removeById(int nodeId)
     {
         if (size == 0)
             return nullptr;
@@ -115,22 +118,26 @@ private:
         if (foundNode == nullptr)
             return nullptr;
 
-        if (foundNode->prev != nullptr) foundNode->prev->next = foundNode->next;
-        else head = foundNode->next;
-        
+        return remove(foundNode);
+    }
 
-        if (foundNode->next != nullptr) foundNode->next->prev = foundNode->prev;
-        else last = foundNode->prev;
+    /**
+     * @Time-Complexity: O(1)
+    */
+    Node* remove(Node* node){
+        if (node->prev != nullptr) node->prev->next = node->next;
+        else head = node->next;
         
-
-        foundNode->prev = nullptr;
-        foundNode->next = nullptr;
+        if (node->next != nullptr) node->next->prev = node->prev;
+        else last = node->prev;
+        
+        node->prev = nullptr;
+        node->next = nullptr;
 
         size--;
 
-        return foundNode;
+        return node;
     }
-
 public:
     DLL() : head(nullptr), last(nullptr), size(0) {}
 
@@ -176,6 +183,13 @@ public:
     */
     Node* deleteById(int nodeId)
     {
+        return removeById(nodeId);
+    }
+
+    /**
+     * @Time-Complexity: O(1)
+     */
+    Node* deleteNode(Node* nodeId){
         return remove(nodeId);
     }
 };
@@ -186,9 +200,10 @@ int main()
 
     dll.addFirst(1, 1);
     dll.addFirst(2, 2);
-    dll.addLast(3, 3);
+    Node* node = dll.addLast(3, 3);
     dll.updateById(3, 10);
     dll.deleteById(2);
+    dll.deleteNode(node);
 
     Iterator it(dll.getHead());
 
