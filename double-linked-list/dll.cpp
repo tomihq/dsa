@@ -128,6 +128,7 @@ private:
      * @Time-Complexity: O(1)
     */
     Node* remove(Node* node){
+        if(node == nullptr) return nullptr;
         if (node->prev != nullptr) node->prev->next = node->next;
         else head = node->next;
         
