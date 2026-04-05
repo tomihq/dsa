@@ -3,11 +3,12 @@
 class Node
 {
 public:
+    int id; 
     int value;
     Node* prev;
     Node* next;
 
-    Node(int val) : value(val), prev(nullptr), next(nullptr) {}
+    Node(int nodeId, int val) : id(nodeId), value(val), prev(nullptr), next(nullptr) {}
 };
 
 /* 
@@ -55,11 +56,11 @@ public:
     /**
      * @Time-Complexity O(1)
     */
-    Node* addFirst(int val)
+    Node* addFirst(int nodeId, int val)
     {
         Node* prevFirst = head;
 
-        Node* newNode = new Node(val);
+        Node* newNode = new Node(nodeId, val);
         head = newNode;
         newNode->next = prevFirst;
 
@@ -77,10 +78,10 @@ public:
     /*
         @Time-Complexity: O(1)
     */
-    Node* addLast(int val)
+    Node* addLast(int nodeId, int val)
     {
         Node* prevLast = last;
-        Node* newLast = new Node(val);
+        Node* newLast = new Node(nodeId, val);
 
         if (prevLast != nullptr)
         {
@@ -104,9 +105,9 @@ int main()
 {
     DLL dll;
 
-    dll.addFirst(1);
-    dll.addFirst(2);
-    dll.addLast(3);
+    dll.addFirst(1, 1);
+    dll.addFirst(2, 2);
+    dll.addLast(3, 3);
 
     Iterator it(dll.getHead());
 
