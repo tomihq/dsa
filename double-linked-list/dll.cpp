@@ -118,9 +118,6 @@ private:
             return nullptr;
 
         Node* foundNode = find(head, nodeId);
-        if (foundNode == nullptr)
-            return nullptr;
-
         return remove(foundNode);
     }
 
