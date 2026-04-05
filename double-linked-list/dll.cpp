@@ -157,9 +157,20 @@ public:
         return push(nodeId, val);
     }
 
+
+    /**
+     * @Time-Complexity: O(1) 
+    */
     Node* getHead()
     {
         return head;
+    }
+
+    /**
+     * @Time-Complexity: O(1)
+    */
+    Node* getLast(){
+        return last;
     }
 
     /**
