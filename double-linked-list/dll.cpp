@@ -28,17 +28,20 @@ public:
         return currentNode;
     }
 
-    void next()
-    {
-        if (currentNode != nullptr)
-        {
-            currentNode = currentNode->next;
-        }
+    void prev(){
+        currentNode = currentNode->prev;
     }
 
-    bool hasNext()
-    {
-        return currentNode != nullptr;
+    bool hasPrev(){
+        return currentNode != nullptr && currentNode -> prev != nullptr; 
+    }
+
+    void next(){
+        currentNode = currentNode->next;
+    }
+
+    bool hasNext(){
+        return currentNode != nullptr && currentNode->next != nullptr;
     }
 };
 
@@ -218,9 +221,14 @@ int main()
 
     Iterator it(dll.getHead());
 
-    while (it.hasNext())
+    while (it.current() != nullptr)
     {
         std::cout << it.current()->value << std::endl;
         it.next();
+    }
+
+    while(it.current() != nullptr){
+        std::cout << it.current()->value << std::endl;
+        it.prev();
     }
 }
