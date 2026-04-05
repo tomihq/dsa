@@ -13,10 +13,10 @@ class BST {
 private:
     Node* root;
 
-    bool findNode(Node* node, int val) {
-        if (node == nullptr) return false;
+    Node* findNode(Node* node, int val) {
+        if (node == nullptr) return nullptr;
 
-        if (node->value == val) return true;
+        if (node->value == val) return node;
 
         if (val > node->value)
             return findNode(node->right, val);
