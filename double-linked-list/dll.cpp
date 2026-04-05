@@ -40,8 +40,8 @@ public:
 class DLL
 {
 private:
-    Node *head;
-    Node *last;
+    Node* head;
+    Node* last;
     int size;
 
     int incSize()
@@ -50,24 +50,7 @@ private:
         return size;
     }
 
-
-    /**
-     * @Time-Complexity: O(n)
-    */
-    Node* find(Node* current, int nodeId){
-        if(current == nullptr) return nullptr;
-        if(current -> id == nodeId) return current;
-        return find(current -> next, nodeId);
-    }
-
-public:
-    DLL() : head(nullptr), last(nullptr), size(0) {}
-
-    /**
-     * @Time-Complexity O(1)
-    */
-    Node* addFirst(int nodeId, int val)
-    {
+    Node* unshift(int nodeId, int val){
         Node* prevFirst = head;
 
         Node* newNode = new Node(nodeId, val);
@@ -85,11 +68,7 @@ public:
         return newNode;
     }
 
-    /*
-        @Time-Complexity: O(1)
-    */
-    Node* addLast(int nodeId, int val)
-    {
+    Node* push(int nodeId, int val){
         Node* prevLast = last;
         Node* newLast = new Node(nodeId, val);
 
@@ -105,13 +84,61 @@ public:
         return newLast;
     }
 
+    /**
+     * @Time-Complexity: O(n)
+    */
+    Node* find(Node* current, int nodeId){
+        if(current == nullptr) return nullptr;
+        if(current -> id == nodeId) return current;
+        return find(current -> next, nodeId);
+    }
+
+    Node* update(int nodeId, int value){
+        Node* foundNode = find(head, nodeId);
+        if(foundNode == nullptr) return nullptr;
+        foundNode -> value = value;  
+
+        return foundNode;
+    }
+
+
+public:
+    DLL() : head(nullptr), last(nullptr), size(0) {}
+
+    /**
+     * @Time-Complexity O(1)
+    */
+    Node* addFirst(int nodeId, int val)
+    {
+       return unshift(nodeId, val);
+    }
+
+    /*
+        @Time-Complexity: O(1)
+    */
+    Node* addLast(int nodeId, int val)
+    {
+        return push(nodeId, val);
+    }
+
     Node* getHead()
     {
         return head;
     }
 
+
+    /**
+     * @Time-Complexity: O(n)
+    */
     Node* findById(int nodeId){
         return find(head, nodeId);
+    }
+
+    /**
+     * @Time-Complexity: O(n)
+    */
+    Node* updateById(int nodeId, int val){
+        return update(nodeId, val);
     }
 };
 
@@ -122,9 +149,7 @@ int main()
     dll.addFirst(1, 1);
     dll.addFirst(2, 2);
     dll.addLast(3, 3);
-
-    Node* node = dll.findById(3);
-    std::cout << node->value << std::endl;
+    dll.updateById(3, 10);
 
     Iterator it(dll.getHead());
 
