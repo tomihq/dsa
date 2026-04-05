@@ -1,17 +1,16 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -g
+CXX = g++
+CXXFLAGS = -Wall -Wextra -pedantic -g
 TARGET = bst
-VPATH = $(shell find . -type d | tr '\n' ':')
 
 all: $(TARGET)
 
 $(TARGET): $(TARGET).o
-	     $(CC) $(CFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(TARGET).o: $(TARGET).c
-	     $(CC) $(CFLAGS) -c $< -o $@
+$(TARGET).o: $(TARGET).cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-		rm *.o $(TARGET)
+	rm -f *.o $(TARGET)
 
 .PHONY: all clean
