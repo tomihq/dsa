@@ -50,6 +50,16 @@ private:
         return size;
     }
 
+
+    /**
+     * @Time-Complexity: O(n)
+    */
+    Node* find(Node* current, int nodeId){
+        if(current == nullptr) return nullptr;
+        if(current -> id == nodeId) return current;
+        return find(current -> next, nodeId);
+    }
+
 public:
     DLL() : head(nullptr), last(nullptr), size(0) {}
 
@@ -99,6 +109,10 @@ public:
     {
         return head;
     }
+
+    Node* findById(int nodeId){
+        return find(head, nodeId);
+    }
 };
 
 int main()
@@ -108,6 +122,9 @@ int main()
     dll.addFirst(1, 1);
     dll.addFirst(2, 2);
     dll.addLast(3, 3);
+
+    Node* node = dll.findById(3);
+    std::cout << node->value << std::endl;
 
     Iterator it(dll.getHead());
 
