@@ -5,8 +5,8 @@ class Node
 public:
     int id;
     int value;
-    Node *prev;
-    Node *next;
+    Node* prev;
+    Node* next;
 
     Node(int nodeId, int val) : id(nodeId), value(val), prev(nullptr), next(nullptr) {}
 };
@@ -18,12 +18,12 @@ public:
 class Iterator
 {
 private:
-    Node *currentNode;
+    Node* currentNode;
 
 public:
-    Iterator(Node *first) : currentNode(first) {}
+    Iterator(Node* first) : currentNode(first) {}
 
-    Node *current()
+    Node* current()
     {
         return currentNode;
     }
@@ -45,11 +45,11 @@ public:
 class DLL
 {
 private:
-    Node *head;
-    Node *last;
+    Node* head;
+    Node* last;
     int size;
 
-    Node *unshift(int nodeId, int val)
+    Node* unshift(int nodeId, int val)
     {
         Node *prevFirst = head;
 
@@ -67,7 +67,7 @@ private:
         return newNode;
     }
 
-    Node *push(int nodeId, int val)
+    Node* push(int nodeId, int val)
     {
         Node *prevLast = last;
         Node *newLast = new Node(nodeId, val);
@@ -87,7 +87,7 @@ private:
     /**
      * @Time-Complexity: O(n)
      */
-    Node *find(Node *current, int nodeId)
+    Node* find(Node *current, int nodeId)
     {
         if (current == nullptr)
             return nullptr;
@@ -96,7 +96,7 @@ private:
         return find(current->next, nodeId);
     }
 
-    Node *update(int nodeId, int value)
+    Node* update(int nodeId, int value)
     {
         Node *foundNode = find(head, nodeId);
         if (foundNode == nullptr)
@@ -137,7 +137,7 @@ public:
     /**
      * @Time-Complexity O(1)
      */
-    Node *addFirst(int nodeId, int val)
+    Node* addFirst(int nodeId, int val)
     {
         return unshift(nodeId, val);
     }
@@ -145,12 +145,12 @@ public:
     /*
         @Time-Complexity: O(1)
     */
-    Node *addLast(int nodeId, int val)
+    Node* addLast(int nodeId, int val)
     {
         return push(nodeId, val);
     }
 
-    Node *getHead()
+    Node* getHead()
     {
         return head;
     }
@@ -158,7 +158,7 @@ public:
     /**
      * @Time-Complexity: O(n)
      */
-    Node *findById(int nodeId)
+    Node* findById(int nodeId)
     {
         return find(head, nodeId);
     }
@@ -166,12 +166,15 @@ public:
     /**
      * @Time-Complexity: O(n)
      */
-    Node *updateById(int nodeId, int val)
+    Node* updateById(int nodeId, int val)
     {
         return update(nodeId, val);
     }
-
-    Node *deleteById(int nodeId)
+    
+    /**
+     * @Time-Complexity: O(n) 
+    */
+    Node* deleteById(int nodeId)
     {
         return remove(nodeId);
     }
